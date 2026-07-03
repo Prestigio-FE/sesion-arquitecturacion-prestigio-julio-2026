@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offsite Estratégico | Prestigio Human AI First</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --pres-dark: #02080c; 
+            --pres-blue: #003B4C; 
+            --pres-green: #A4B625; 
+            --text-main: #f8fafc;
+            --text-muted: #8ba3b8;
+            --glass-bg: rgba(0, 59, 76, 0.1);
+            --glass-border: rgba(164, 182, 37, 0.2);
+            --glow-green: 0 0 30px rgba(164, 182, 37, 0.3);
+            --glow-blue: 0 0 40px rgba(0, 59, 76, 0.6);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--pres-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ORBES ANIMADOS (EFECTO VIVO) */
+        .orb {
+            position: fixed; border-radius: 50%; filter: blur(100px); z-index: -2; opacity: 0.5;
+            animation: float 25s infinite ease-in-out alternate;
+        }
+        .orb-1 { width: 50vw; height: 50vw; background: var(--pres-blue); top: -10%; left: -10%; }
+        .orb-2 { width: 40vw; height: 40vw; background: rgba(164, 182, 37, 0.15); bottom: -5%; right: -5%; animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(5%, 10%) scale(1.1); }
+            100% { transform: translate(-5%, -5%) scale(0.9); }
+        }
+
+        /* GRID HOLOGRÁFICO */
+        body::after {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px; z-index: -1; pointer-events: none;
+            mask-image: radial-gradient(circle at center, black 50%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 50%, transparent 100%);
+        }
+
+        header { text-align: center; padding: 5rem 2rem 3rem; z-index: 10; }
+
+        .logo-container { margin-bottom: 2rem; animation: slideDown 1s ease-out; }
+        .logo-container img { height: 100px; filter: drop-shadow(0px 10px 20px rgba(0, 59, 76, 0.5)); }
+
+        h1 { font-size: 3rem; font-weight: 300; letter-spacing: 2px; color: #fff; margin-bottom: 0.5rem; }
+        h1 strong { color: var(--pres-green); font-weight: 800; text-shadow: var(--glow-green); }
+
+        .tagline {
+            display: inline-block; background: rgba(164, 182, 37, 0.05); border: 1px solid var(--pres-green);
+            color: var(--pres-green); padding: 0.6rem 2rem; border-radius: 100px; font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 2px; font-weight: 600; box-shadow: var(--glow-green);
+            backdrop-filter: blur(10px); margin-top: 1rem;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; z-index: 10; flex: 1; }
+
+        /* SECCIÓN DE OBJETIVOS */
+        .objectives-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem; margin-top: 2rem;
+        }
+        .obj-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+            padding: 1.5rem; border-radius: 20px; backdrop-filter: blur(10px); text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .obj-card:hover { transform: translateY(-5px); border-color: rgba(164, 182, 37, 0.3); }
+        .obj-card h4 { color: var(--pres-green); text-transform: uppercase; font-size: 0.85rem; margin-bottom: 0.8rem; letter-spacing: 1px; }
+        .obj-card p { font-size: 0.95rem; font-weight: 300; color: #e2e8f0; }
+
+        /* LINEA DE TIEMPO INTERACTIVA */
+        .timeline-section { margin-top: 5rem; }
+        .section-title { font-size: 1.8rem; font-weight: 300; margin-bottom: 2rem; color: #fff; text-align: left; border-left: 4px solid var(--pres-green); padding-left: 20px; }
+
+        .agenda-item {
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            border-radius: 20px; margin-bottom: 1.2rem; cursor: pointer; transition: all 0.3s ease;
+            position: relative; overflow: hidden; backdrop-filter: blur(15px);
+        }
+        .agenda-item:hover { background: rgba(0, 59, 76, 0.2); border-color: rgba(164, 182, 37, 0.4); transform: translateX(5px); }
+        .agenda-item.active { border-color: var(--pres-green); background: rgba(0, 59, 76, 0.3); box-shadow: var(--glow-blue); }
+
+        .agenda-header { padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .time { font-weight: 800; color: var(--pres-green); font-size: 1.1rem; width: 150px; text-shadow: var(--glow-green); }
+        .topic { flex: 1; font-size: 1.2rem; font-weight: 400; color: #fff; }
+        .arrow { font-size: 1rem; color: var(--pres-green); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border: 1px solid rgba(164,182,37,0.3); border-radius: 50%; }
+        .agenda-item.active .arrow { transform: rotate(180deg); background: var(--pres-green); color: var(--pres-dark); }
+
+        .agenda-body {
+            max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 0 2rem;
+        }
+        .agenda-item.active .agenda-body { max-height: 800px; opacity: 1; padding: 1rem 2rem 2rem; border-top: 1px solid rgba(255,255,255,0.05); }
+
+        .detail-card { background: rgba(0,0,0,0.4); padding: 1.5rem; border-radius: 15px; margin-top: 15px; border-left: 3px solid var(--pres-green); }
+        .detail-card h5 { color: var(--pres-green); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
+        .detail-card p { font-size: 1rem; color: #bacddb; font-weight: 300; margin-bottom: 10px; }
+        .detail-card p:last-child { margin-bottom: 0; }
+        
+        .participant-badge { display: inline-block; background: rgba(255,255,255,0.1); padding: 3px 10px; border-radius: 50px; font-size: 0.75rem; margin-top: 10px; color: #fff;}
+
+        /* Bloque destacado para Óscar */
+        .special-guest { background: linear-gradient(135deg, rgba(164, 182, 37, 0.1) 0%, rgba(0, 59, 76, 0.2) 100%); border: 1px solid rgba(164, 182, 37, 0.5); position: relative; }
+        .guest-badge { position: absolute; top: -12px; right: 20px; font-size: 0.7rem; color: var(--pres-dark); background: var(--pres-green); padding: 4px 12px; border-radius: 50px; font-weight: 800; letter-spacing: 1px; box-shadow: var(--glow-green); text-transform: uppercase;}
+
+        footer { padding: 4rem 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); margin-top: 4rem;}
+        .footer-logo { height: 40px; opacity: 0.5; margin-bottom: 1rem; filter: grayscale(100%) brightness(200%); transition: opacity 0.3s; }
+        .footer-logo:hover { opacity: 1; filter: none; }
+        .footer-text { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
+
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .agenda-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .time { width: 100%; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <header>
+        <div class="logo-container">
+            <img src="PRESTIGIO LOGO NUEVO.png" alt="Logo Prestigio">
+        </div>
+        <h1>Offsite Estratégico <strong>2026</strong></h1>
+        <div class="tagline">Medellín • Julio 10 • Visión 2030</div>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">Objetivos de la Sesión</h2>
+        <div class="objectives-grid">
+            <div class="obj-card">
+                <h4>1. El Átomo de Conocimiento</h4>
+                <p>Aclarar qué es exactamente lo que Prestigio va a empaquetar y escalar operativamente para lograr la meta de 100.000 líderes.</p>
+            </div>
+            <div class="obj-card">
+                <h4>2. Fronteras y Ecosistema</h4>
+                <p>Definir los límites técnicos: qué construye/gestiona Prestigio internamente (BigQuery, n8n) y qué se delega a nuestro partner técnico.</p>
+            </div>
+            <div class="obj-card">
+                <h4>3. Sincronizar Roadmap</h4>
+                <p>Salir con un plan de acción sincronizado que trace la ruta clara y las prioridades de desarrollo para Q3 y Q4.</p>
+            </div>
+        </div>
+
+        <div class="timeline-section">
+            <h2 class="section-title">Agenda Interactiva</h2>
+
+            <div class="agenda-item" onclick="toggleAgenda(this)">
+                <div class="agenda-header">
+                    <div class="time">08:00 - 10:00</div>
+                    <div class="topic">Bloque 1: Inmersión Técnica y Alineación Base</div>
+                    <div class="arrow">▼</div>
+                </div>
+                <div class="agenda-body">
+                    <div class="detail-card">
+                        <h5>08:00 AM - 09:00 AM | Radiografía TI Prestigio</h5>
+                        <p>Presentación a Fernando del inventario tecnológico actual. Revisión profunda de la bodega en BigQuery, flujos en n8n y ecosistema Claude Team. El objetivo es dar todo el contexto técnico para integrar la experiencia comercial y de arquitectura.</p>
+                    </div>
+                    <div class="detail-card">
+                        <h5>09:00 AM - 10:00 AM | Retos de Infraestructura</h5>
+                        <p>Análisis de los procesos actuales para retar y desafiar nuestra capacidad de escalabilidad real frente a la Visión 2030.</p>
+                    </div>
+                    <div class="participant-badge">👤 Sebas, Fernando, JuanGui</div>
+                </div>
+            </div>
+
+            <div class="agenda-item special-guest" onclick="toggleAgenda(this)">
+                <div class="guest-badge">Invitado Especial</div>
+                <div class="agenda-header">
+                    <div class="time">10:00 - 11:30</div>
+                    <div class="topic">Bloque 2: Inspiración, Átomo y Showcase CrearIA</div>
+                    <div class="arrow">▼</div>
+                </div>
+                <div class="agenda-body">
+                    <div class="detail-card">
+                        <h5>10:00 AM - 10:45 AM | El Átomo de Conocimiento</h5>
+                        <p>Conversación sobre la esencia de Prestigio. ¿Qué conocimiento es el que vamos a automatizar y proteger para lograr la meta a 2030?</p>
+                    </div>
+                    <div class="detail-card">
+                        <h5>10:45 AM - 11:30 AM | Showcase CrearIA (A cargo de Óscar)</h5>
+                        <p>Presentación exclusiva del caso de uso estratégico visto por la junta. El objetivo es usar este desarrollo para inspirar la Gran Apuesta y alinear nuestra arquitectura de producto.</p>
+                    </div>
+                    <div class="participant-badge">👤 Equipo Completo + Óscar (CrearIA)</div>
+                </div>
+            </div>
+
+            <div class="agenda-item" onclick="toggleAgenda(this)">
+                <div class="agenda-header">
+                    <div class="time">11:30 - 13:30</div>
+                    <div class="topic">Bloque 3: Fronteras, Ecosistema y Priorización</div>
+                    <div class="arrow">▼</div>
+                </div>
+                <div class="agenda-body">
+                    <div class="detail-card">
+                        <h5>11:30 AM - 12:30 PM | Co-creación y Límites Técnicos</h5>
+                        <p>¿Dónde termina Prestigio y dónde empieza CrearIA? Definición de la arquitectura compartida y los servicios específicos que ofrecerá la compañía frente a proveedores externos.</p>
+                    </div>
+                    <div class="detail-card">
+                        <h5>12:30 PM - 01:30 PM | Toma de Decisiones y Roadmap</h5>
+                        <p>Definición de planes y prioridades técnicas para el Q3/Q4. Sincronizar el alcance de los desarrollos conjuntos y salir con un plan claro.</p>
+                    </div>
+                    <div class="participant-badge">👤 Equipo Completo + Óscar (Hasta 1:30 PM)</div>
+                </div>
+            </div>
+
+            <div class="agenda-item" onclick="toggleAgenda(this)">
+                <div class="agenda-header">
+                    <div class="time">13:30 - 16:00</div>
+                    <div class="topic">Bloque 4: Cierre Estratégico & Propuesta de Valor</div>
+                    <div class="arrow">▼</div>
+                </div>
+                <div class="agenda-body">
+                    <div class="detail-card">
+                        <h5>01:30 PM - 02:30 PM | Almuerzo de Trabajo</h5>
+                        <p>Espacio para recargar energías e integrar las conversaciones de la mañana.</p>
+                    </div>
+                    <div class="detail-card">
+                        <h5>02:30 PM - 04:00 PM | Propuesta de Valor "Human AI First"</h5>
+                        <p>Aterrizar todo lo discutido en una propuesta de valor comercial clara. Cómo le vendemos al cliente final que la inteligencia artificial amplifica el potencial humano de sus líderes sin reemplazar el criterio.</p>
+                    </div>
+                    <div class="participant-badge">👤 Equipo Completo (Prestigio)</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <img src="PRESTIGIO LOGO NUEVO.png" alt="Logo Prestigio Footer" class="footer-logo">
+        <p class="footer-text">&copy; 2026 Prestigio. Liderando desde el ser.</p>
+    </footer>
+
+    <script>
+        function toggleAgenda(element) {
+            const items = document.querySelectorAll('.agenda-item');
+            
+            // Si el elemento clickeado ya está activo, lo cerramos
+            if(element.classList.contains('active')) {
+                element.classList.remove('active');
+                return;
+            }
+
+            // Cerramos todos los demás
+            items.forEach(item => item.classList.remove('active'));
+            
+            // Abrimos el clickeado
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>
