@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión Estratégica | Prestigio Human AI First</title>
+    <title>Sesión de Trabajo | Prestigio Human AI First</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
 
         :root {
             --pres-white: #ffffff;
             --pres-blue: #003B4C; 
             --pres-green: #A4B625; 
-            --text-main: #001a22;
-            --text-muted: #546e7a;
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(164, 182, 37, 0.3);
-            --shadow-soft: 0 10px 40px rgba(0, 59, 76, 0.08);
-            --glow-green: 0 0 20px rgba(164, 182, 37, 0.2);
+            --text-main: #0a1f26;
+            --text-muted: #4a6572;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(0, 59, 76, 0.1);
+            --shadow-premium: 0 15px 35px rgba(0, 59, 76, 0.06), 0 5px 15px rgba(0, 0, 0, 0.02);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,108 +29,134 @@
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
-        /* ORBES SUTILES DE FONDO PARA EFECTO "VIVO" */
+        /* ORBES DE COLOR FLUIDOS PARA DAR SENSACIÓN DE VIDA */
         .orb {
-            position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; opacity: 0.15;
-            animation: float 25s infinite ease-in-out alternate;
+            position: fixed; border-radius: 50%; filter: blur(140px); z-index: -1; opacity: 0.12;
+            animation: float 30s infinite ease-in-out alternate;
         }
-        .orb-1 { width: 60vw; height: 60vw; background: var(--pres-blue); top: -20%; left: -20%; }
-        .orb-2 { width: 50vw; height: 50vw; background: var(--pres-green); bottom: -10%; right: -10%; animation-delay: -5s; }
+        .orb-1 { width: 50vw; height: 50vw; background: var(--pres-blue); top: -15%; left: -15%; }
+        .orb-2 { width: 45vw; height: 40vw; background: var(--pres-green); bottom: -10%; right: -10%; animation-delay: -7s; }
 
         @keyframes float {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(10%, 5%) scale(1.1); }
+            100% { transform: translate(8%, 10%) scale(1.05); }
         }
 
         header { text-align: center; padding: 5rem 2rem 3rem; z-index: 10; }
 
-        .logo-container { margin-bottom: 2rem; animation: fadeIn 1s ease-out; }
-        .logo-container img { height: 110px; filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.05)); }
+        .logo-container { margin-bottom: 2rem; }
+        .logo-container img { height: 100px; filter: drop-shadow(0px 4px 15px rgba(0, 59, 76, 0.1)); }
 
-        h1 { font-size: 3.2rem; font-weight: 300; letter-spacing: -1px; color: var(--pres-blue); margin-bottom: 0.5rem; }
+        h1 { font-size: 3.2rem; font-weight: 300; color: var(--pres-blue); letter-spacing: -0.5px; margin-bottom: 0.5rem; }
         h1 strong { color: var(--pres-green); font-weight: 800; }
 
         .tagline {
             display: inline-block; background: var(--pres-blue);
             color: #fff; padding: 0.7rem 2.5rem; border-radius: 100px; font-size: 0.9rem;
-            text-transform: uppercase; letter-spacing: 3px; font-weight: 600;
-            box-shadow: 0 10px 20px rgba(0, 59, 76, 0.2); margin-top: 1rem;
+            text-transform: uppercase; letter-spacing: 2px; font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0, 59, 76, 0.15); margin-top: 1rem;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; z-index: 10; flex: 1; }
+        .container { max-width: 1050px; margin: 0 auto; padding: 2rem; z-index: 10; flex: 1; }
 
         /* OBJETIVOS */
+        .objectives-title { font-size: 1.8rem; font-weight: 400; color: var(--pres-blue); margin-bottom: 2rem; text-align: center; }
         .objectives-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem; margin-top: 3rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1.8rem; margin-bottom: 5rem;
         }
         .obj-card {
-            background: var(--glass-bg); border: 1px solid rgba(0, 59, 76, 0.05);
-            padding: 2rem; border-radius: 24px; backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-soft); transition: transform 0.3s ease;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            padding: 2.2rem; border-radius: 24px; box-shadow: var(--shadow-premium);
+            transition: all 0.3s ease; backdrop-filter: blur(10px);
         }
-        .obj-card:hover { transform: translateY(-5px); border-color: var(--pres-green); }
-        .obj-card h4 { color: var(--pres-green); text-transform: uppercase; font-size: 0.85rem; margin-bottom: 0.8rem; letter-spacing: 1px; }
+        .obj-card:hover { transform: translateY(-4px); border-color: var(--pres-green); box-shadow: 0 20px 40px rgba(0, 59, 76, 0.1); }
+        .obj-card h4 { color: var(--pres-green); text-transform: uppercase; font-size: 0.85rem; margin-bottom: 0.8rem; letter-spacing: 1.5px; font-weight: 700; }
         .obj-card p { font-size: 1.05rem; font-weight: 400; color: var(--pres-blue); }
 
-        /* AGENDA */
-        .timeline-section { margin-top: 5rem; }
+        /* AGENDA INTERACTIVA */
         .section-title { font-size: 2rem; font-weight: 400; margin-bottom: 2.5rem; color: var(--pres-blue); text-align: left; border-left: 6px solid var(--pres-green); padding-left: 20px; }
 
         .agenda-item {
-            background: #fff; border: 1px solid #eee;
-            border-radius: 24px; margin-bottom: 1.5rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            background: #fff; border: 1px solid #eef2f5;
+            border-radius: 24px; margin-bottom: 1.5rem; cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative; box-shadow: 0 4px 20px rgba(0,0,0,0.01);
         }
-        .agenda-item:hover { transform: scale(1.01); border-color: var(--pres-green); box-shadow: var(--shadow-soft); }
-        .agenda-item.active { border-color: var(--pres-green); background: #fdfdfd; box-shadow: var(--shadow-soft); }
+        .agenda-item:hover { transform: translateX(4px); border-color: rgba(164, 182, 37, 0.5); box-shadow: var(--shadow-premium); }
+        
+        /* Estado cuando está abierto */
+        .agenda-item.active { border-color: var(--pres-green); background: #fbfdfd; box-shadow: var(--shadow-premium); }
 
-        .agenda-header { padding: 1.8rem 2.5rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .time { font-weight: 800; color: var(--pres-green); font-size: 1.2rem; width: 160px; }
-        .topic { flex: 1; font-size: 1.3rem; font-weight: 600; color: var(--pres-blue); }
-        .arrow { font-size: 1rem; color: var(--pres-green); transition: transform 0.4s ease; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; border: 1.5px solid #eee; border-radius: 50%; }
+        /* Estado cuando está CHULEADO (Completado) */
+        .agenda-item.completed {
+            border-color: #cbd5e1;
+            background: #f8fafc;
+            opacity: 0.65;
+        }
+        .agenda-item.completed .topic {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+        .agenda-item.completed .time {
+            color: #94a3b8;
+        }
+
+        .agenda-header { padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+        .time { font-weight: 700; color: var(--pres-green); font-size: 1.2rem; width: 150px; transition: color 0.3s; }
+        .topic { flex: 1; font-size: 1.3rem; font-weight: 600; color: var(--pres-blue); transition: all 0.3s; }
+        
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+
+        /* BOTÓN DE CHULEAR (INTERACTIVO) */
+        .check-btn {
+            background: #f0f4f8; color: var(--text-muted); border: 1px solid #d1d5db;
+            padding: 0.4rem 1.1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s ease;
+            cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .check-btn:hover { background: rgba(164, 182, 37, 0.1); color: var(--pres-green); border-color: var(--pres-green); }
+        
+        .agenda-item.completed .check-btn {
+            background: var(--pres-green); color: #fff; border-color: var(--pres-green);
+            box-shadow: 0 4px 10px rgba(164, 182, 37, 0.3);
+        }
+
+        .arrow { font-size: 0.9rem; color: var(--pres-green); transition: transform 0.4s ease; width: 36px; height: 35px; display: flex; justify-content: center; align-items: center; border: 1.5px solid #e2e8f0; border-radius: 50%; }
         .agenda-item.active .arrow { transform: rotate(180deg); background: var(--pres-green); color: #fff; border-color: var(--pres-green); }
+        .agenda-item.completed .arrow { border-color: #cbd5e1; color: #94a3b8; }
 
         .agenda-body {
             max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             padding: 0 2.5rem;
         }
-        .agenda-item.active .agenda-body { max-height: 800px; opacity: 1; padding: 0 2.5rem 2.5rem; }
+        .agenda-item.active .agenda-body { max-height: 900px; opacity: 1; padding: 0 2.5rem 2.5rem; }
 
-        .detail-card { background: #f8fbff; padding: 1.5rem; border-radius: 18px; margin-top: 15px; border-left: 4px solid var(--pres-green); }
-        .detail-card h5 { color: var(--pres-blue); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; font-weight: 800; }
+        .detail-card { background: #f9fbfe; padding: 1.6rem; border-radius: 20px; margin-top: 15px; border-left: 4px solid var(--pres-green); }
+        .detail-card h5 { color: var(--pres-blue); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; font-weight: 700; }
         .detail-card p { font-size: 1.1rem; color: var(--text-muted); font-weight: 400; margin-bottom: 0; }
         
-        .participant-badge { display: inline-block; background: #f0f4f7; padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; margin-top: 15px; color: var(--pres-blue); font-weight: 600; }
+        .participant-badge { display: inline-block; background: #f1f5f9; padding: 6px 16px; border-radius: 50px; font-size: 0.8rem; margin-top: 15px; color: var(--pres-blue); font-weight: 600; }
 
-        /* BADGE INVITADO ESPECIAL */
+        /* ETIQUETA INVITADO ESPECIAL */
         .special-guest-tag {
-            background: var(--pres-green);
-            color: #fff;
-            font-size: 0.7rem;
-            font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 0 0 0 12px;
-            position: absolute;
-            top: 0;
-            right: 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            background: var(--pres-green); color: #fff; font-size: 0.7rem; font-weight: 800;
+            padding: 5px 14px; border-radius: 0 0 0 16px; position: absolute; top: 0; right: 0;
+            text-transform: uppercase; letter-spacing: 1px; z-index: 5;
         }
 
-        footer { padding: 5rem 2rem; text-align: center; background: #fcfdfd; border-top: 1px solid #f0f0f0; margin-top: 4rem; }
+        footer { padding: 5rem 2rem; text-align: center; background: #fafcfc; border-top: 1px solid #edf2f5; margin-top: 6rem; }
         .footer-logo { height: 45px; margin-bottom: 1.5rem; }
         .footer-text { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px; font-weight: 400; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
         @media (max-width: 768px) {
-            .agenda-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .agenda-header { flex-direction: column; align-items: flex-start; gap: 12px; padding: 1.5rem; }
             .time { width: 100%; }
+            .header-actions { width: 100%; justify-content: space-between; }
             h1 { font-size: 2.2rem; }
-            .agenda-header { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -144,47 +169,50 @@
         <div class="logo-container">
             <img src="PRESTIGIO LOGO NUEVO.png" alt="Logo Prestigio">
         </div>
-        <h1>Offsite Estratégico <strong>2026</strong></h1>
+        <h1>Sesión de Trabajo <strong>Estratégico</strong></h1>
         <div class="tagline">Medellín • Julio 10 • Visión 2030</div>
     </header>
 
     <div class="container">
         
-        <h2 class="section-title">El propósito de nuestro encuentro</h2>
+        <h3 class="objectives-title">El propósito de nuestro encuentro</h3>
         <div class="objectives-grid">
             <div class="obj-card">
-                <h4>1. Descubrir nuestro núcleo</h4>
-                <p>Vamos a conversar para identificar esa esencia única de Prestigio. Queremos entender qué nos hace diferentes para poder automatizarlo y tocar la vida de 100.000 líderes sin perder nuestro toque humano.</p>
+                <h4>1. Compartir nuestra esencia</h4>
+                <p>Conversaremos a fondo para definir las metodologías clave que nos hacen únicos. Queremos estructurar este conocimiento para poder acompañar de forma masiva a miles de líderes conservando nuestra cercanía.</p>
             </div>
             <div class="obj-card">
-                <h4>2. Trazar la cancha</h4>
-                <p>Queremos tener total claridad sobre qué construimos en casa (nuestra data, nuestros flujos) y en qué momentos nos damos la mano con el talento de nuestros aliados tecnológicos.</p>
+                <h4>2. Coordinar el ecosistema</h4>
+                <p>Buscaremos tener total claridad sobre el alcance de nuestras herramientas internas (bases de datos y flujos propios) y entender con precisión en qué momentos nos damos la mano con aliados y plataformas externas.</p>
             </div>
             <div class="obj-card">
-                <h4>3. Sincronizar nuestros pasos</h4>
-                <p>La idea es salir de esta sesión con un camino claro para lo que queda del año, priorizando lo que realmente nos mueve y asegurando que la tecnología evolucione con nosotros.</p>
+                <h4>3. Sincronizar el camino</h4>
+                <p>Estructuraremos una hoja de ruta compartida para los próximos meses, priorizando los proyectos de mayor valor para el equipo y definiendo los siguientes pasos de forma coordinada.</p>
             </div>
         </div>
 
         <div class="timeline-section">
-            <h2 class="section-title">Nuestra Agenda</h2>
+            <h2 class="section-title">Nuestra Agenda del Día</h2>
 
             <div class="agenda-item" onclick="toggleAgenda(this)">
                 <div class="agenda-header">
                     <div class="time">08:00 - 10:00</div>
-                    <div class="topic">Bloque 1: ¿Dónde estamos parados hoy?</div>
-                    <div class="arrow">▼</div>
+                    <div class="topic">Nuestra realidad actual y retos de crecimiento</div>
+                    <div class="header-actions">
+                        <button class="check-btn" onclick="event.stopPropagation(); checkItem(this)">◽ Pendiente</button>
+                        <div class="arrow">▼</div>
+                    </div>
                 </div>
                 <div class="agenda-body">
                     <div class="detail-card">
-                        <h5>Radiografía de nuestra tecnología</h5>
-                        <p>Nos sentaremos a mirar bajo el capó. Revisaremos qué herramientas y flujos tenemos hoy en nuestro ecosistema para que todos hablemos el mismo idioma antes de empezar a soñar con el futuro.</p>
+                        <h5>Alineación de herramientas internas</h5>
+                        <p>Haremos una revisión de las plataformas y automatizaciones lógicas sobre las cuales opera la empresa hoy. El fin es que el equipo tenga total entendimiento de las bases actuales antes de planear el futuro.</p>
                     </div>
                     <div class="detail-card">
-                        <h5>Nuestros retos para crecer</h5>
-                        <p>Hablaremos con honestidad sobre los cuellos de botella y las fricciones que hoy sentimos. Es el momento de retar lo que hacemos para prepararnos para la escalabilidad.</p>
+                        <h5>Identificación de oportunidades</h5>
+                        <p>Hablaremos abiertamente sobre las actividades y procesos operativos que hoy nos quitan tiempo. Mapearemos estas necesidades para poder diseñar soluciones de fondo que nos dejen crecer con orden.</p>
                     </div>
-                    <div class="participant-badge">👤 Equipo de Tecnología y Liderazgo</div>
+                    <div class="participant-badge">👤 Foco Dirección y Tecnología</div>
                 </div>
             </div>
 
@@ -192,17 +220,20 @@
                 <div class="special-guest-tag">Invitado Especial</div>
                 <div class="agenda-header">
                     <div class="time">10:00 - 11:30</div>
-                    <div class="topic">Bloque 2: Nuestra esencia e inspiración</div>
-                    <div class="arrow">▼</div>
+                    <div class="topic">Nuestra esencia y un espacio de inspiración</div>
+                    <div class="header-actions">
+                        <button class="check-btn" onclick="event.stopPropagation(); checkItem(this)">◽ Pendiente</button>
+                        <div class="arrow">▼</div>
+                    </div>
                 </div>
                 <div class="agenda-body">
                     <div class="detail-card">
-                        <h5>El núcleo de Prestigio</h5>
-                        <p>Una conversación abierta sobre lo que nos hace únicos. ¿Cómo protegemos nuestra metodología mientras abrazamos la Inteligencia Artificial en nuestro día a día?</p>
+                        <h5>La base de nuestro conocimiento</h5>
+                        <p>Abriremos una conversación sobre cómo estructurar el saber de Prestigio para que sirva de base a futuros desarrollos, asegurando que la tecnología sea un vehículo para el ser.</p>
                     </div>
                     <div class="detail-card">
-                        <h5>Caso de Uso (Sesión de inspiración)</h5>
-                        <p>Tendremos un espacio para ver aplicaciones reales y espectaculares que nos abran la mente, acompañados de consultoría externa para visualizar nuestra gran apuesta tecnológica.</p>
+                        <h5>Caso de Uso CrearIA</h5>
+                        <p>Tendremos una sesión para conocer una implementación tecnológica de vanguardia de la mano de Óscar. El objetivo es usar esta experiencia práctica para inspirar nuestra arquitectura de producto.</p>
                     </div>
                     <div class="participant-badge">👤 Equipo Ampliado + Consultoría Externa</div>
                 </div>
@@ -211,17 +242,20 @@
             <div class="agenda-item" onclick="toggleAgenda(this)">
                 <div class="agenda-header">
                     <div class="time">11:30 - 13:30</div>
-                    <div class="topic">Bloque 3: Definiendo nuestro camino juntos</div>
-                    <div class="arrow">▼</div>
+                    <div class="topic">Acuerdos y plan de acción para el semestre</div>
+                    <div class="header-actions">
+                        <button class="check-btn" onclick="event.stopPropagation(); checkItem(this)">◽ Pendiente</button>
+                        <div class="arrow">▼</div>
+                    </div>
                 </div>
                 <div class="agenda-body">
                     <div class="detail-card">
-                        <h5>Co-creación y nuestros límites</h5>
-                        <p>Vamos a definir hasta dónde llegamos nosotros con nuestra tecnología interna y dónde nos apoyamos en nuestros aliados, siempre cuidando y gobernando nuestra propia información.</p>
+                        <h5>Alcance de nuestra tecnología y aliados</h5>
+                        <p>Definiremos con precisión las fronteras: qué desarrollos se lideran desde casa y cómo nos conectamos de forma segura con servicios y plataformas externas.</p>
                     </div>
                     <div class="detail-card">
-                        <h5>Nuestras prioridades a futuro</h5>
-                        <p>Aquí tomaremos decisiones. Cerraremos la mañana con acuerdos claros y un horizonte definido para los proyectos críticos que vamos a impulsar en los próximos meses.</p>
+                        <h5>Construcción de la hoja de ruta viva</h5>
+                        <p>Estableceremos las prioridades estratégicas para los próximos meses, definiendo los focos de acción de cada equipo para avanzar al mismo ritmo.</p>
                     </div>
                     <div class="participant-badge">👤 Equipo Completo</div>
                 </div>
@@ -230,17 +264,20 @@
             <div class="agenda-item" onclick="toggleAgenda(this)">
                 <div class="agenda-header">
                     <div class="time">13:30 - 16:00</div>
-                    <div class="topic">Bloque 4: ¿Cómo se lo contamos al mundo?</div>
-                    <div class="arrow">▼</div>
+                    <div class="topic">Almuerzo y propuesta de valor al mercado</div>
+                    <div class="header-actions">
+                        <button class="check-btn" onclick="event.stopPropagation(); checkItem(this)">◽ Pendiente</button>
+                        <div class="arrow">▼</div>
+                    </div>
                 </div>
                 <div class="agenda-body">
                     <div class="detail-card">
-                        <h5>Almuerzo y recarga</h5>
-                        <p>Un espacio tranquilo para compartir, bajar la información de la mañana y conectar como equipo.</p>
+                        <h5>Almuerzo y conversación libre</h5>
+                        <p>Un momento para descansar, compartir de forma cercana y decantar tranquilamente las ideas conversadas durante la mañana.</p>
                     </div>
                     <div class="detail-card">
-                        <h5>Nuestra propuesta de valor</h5>
-                        <p>Es hora de traducir nuestra tecnología a un lenguaje comercial. ¿Cómo le contamos a nuestros clientes que la IA que usamos está aquí para amplificar el talento humano y no para reemplazarlo?</p>
+                        <h5>Nuestra propuesta comercial</h5>
+                        <p>Aterrizaremos las conclusiones en un mensaje comercial claro. Definiremos cómo contarle al mercado que nuestras herramientas potencian al ser humano y amplifican su liderazgo sin reemplazarlo.</p>
                     </div>
                     <div class="participant-badge">👤 Equipo Prestigio</div>
                 </div>
@@ -255,6 +292,7 @@
     </footer>
 
     <script>
+        // Control de apertura de acordeón
         function toggleAgenda(element) {
             const items = document.querySelectorAll('.agenda-item');
             if(element.classList.contains('active')) {
@@ -263,6 +301,19 @@
             }
             items.forEach(item => item.classList.remove('active'));
             element.classList.add('active');
+        }
+
+        // Sistema dinámico de "Chulear" / Checkbox ejecutivo
+        function checkItem(button) {
+            const card = button.closest('.agenda-item');
+            card.classList.toggle('completed');
+            
+            if(card.classList.contains('completed')) {
+                button.innerHTML = "✅ Completado";
+                card.classList.remove('active'); // Cierra automáticamente al completar para una UX limpia
+            } else {
+                button.innerHTML = "◽ Pendiente";
+            }
         }
     </script>
 </body>
