@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sesión de Trabajo | Prestigio Human AI First</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
-
         :root {
+            /* Variables Agenda */
             --pres-white: #ffffff;
             --pres-blue: #003B4C; 
             --pres-green: #A4B625; 
@@ -16,6 +19,19 @@
             --card-bg: rgba(255, 255, 255, 0.9);
             --card-border: rgba(0, 59, 76, 0.1);
             --shadow-premium: 0 15px 35px rgba(0, 59, 76, 0.06), 0 5px 15px rgba(0, 0, 0, 0.02);
+
+            /* Variables Mapa Ecosistema */
+            --map-bg: #F5F8F7;
+            --map-panel: #FFFFFF;
+            --map-ink: #0E2B28;
+            --map-muted: #5B6E6B;
+            --map-line: #DCE6E4;
+            --map-teal: #0F766E;
+            --map-bq: #4285F4;
+            --map-n8n: #EA4B71;
+            --map-claude: #C15F3C;
+            --map-studio: #7C5CE0;
+            --map-radius: 18px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -63,7 +79,9 @@
         .container { max-width: 1050px; margin: 0 auto; padding: 2rem; z-index: 10; flex: 1; }
 
         /* OBJETIVOS */
-        .objectives-title { font-size: 1.8rem; font-weight: 400; color: var(--pres-blue); margin-bottom: 2rem; text-align: center; }
+        .objectives-title { font-size: 1.8rem; font-weight: 400; color: var(--pres-blue); margin-bottom: 0.5rem; text-align: center; }
+        .objectives-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.05rem; }
+        
         .objectives-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
             gap: 1.8rem; margin-bottom: 5rem;
@@ -72,10 +90,13 @@
             background: var(--card-bg); border: 1px solid var(--card-border);
             padding: 2.2rem; border-radius: 24px; box-shadow: var(--shadow-premium);
             transition: all 0.3s ease; backdrop-filter: blur(10px);
+            display: flex; flex-direction: column;
         }
         .obj-card:hover { transform: translateY(-4px); border-color: var(--pres-green); box-shadow: 0 20px 40px rgba(0, 59, 76, 0.1); }
         .obj-card h4 { color: var(--pres-green); text-transform: uppercase; font-size: 0.85rem; margin-bottom: 0.8rem; letter-spacing: 1.5px; font-weight: 700; }
-        .obj-card p { font-size: 1.05rem; font-weight: 400; color: var(--pres-blue); }
+        .obj-card p { font-size: 1.05rem; font-weight: 400; color: var(--pres-blue); flex-grow: 1; }
+        .obj-execution { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed rgba(0,59,76,0.1); font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+        .obj-execution span { color: var(--pres-green); }
 
         /* AGENDA INTERACTIVA */
         .section-title { font-size: 2rem; font-weight: 400; margin-bottom: 2.5rem; color: var(--pres-blue); text-align: left; border-left: 6px solid var(--pres-green); padding-left: 20px; }
@@ -133,9 +154,11 @@
             max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             padding: 0 2.5rem;
         }
-        .agenda-item.active .agenda-body { max-height: 900px; opacity: 1; padding: 0 2.5rem 2.5rem; }
+        
+        /* Modificado para que el mapa quepa completo */
+        .agenda-item.active .agenda-body { max-height: 3500px; opacity: 1; padding: 0 2.5rem 2.5rem; }
 
-        .detail-card { background: #f9fbfe; padding: 1.6rem; border-radius: 20px; margin-top: 15px; border-left: 4px solid var(--pres-green); }
+        .detail-card { background: #f9fbfe; padding: 1.6rem; border-radius: 20px; margin-top: 15px; border-left: 4px solid var(--pres-green); overflow: hidden;}
         .detail-card h5 { color: var(--pres-blue); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; font-weight: 700; }
         .detail-card p { font-size: 1.1rem; color: var(--text-muted); font-weight: 400; margin-bottom: 0; }
         
@@ -152,12 +175,69 @@
         .footer-logo { height: 45px; margin-bottom: 1.5rem; }
         .footer-text { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px; font-weight: 400; }
 
-        @media (max-width: 768px) {
-            .agenda-header { flex-direction: column; align-items: flex-start; gap: 12px; padding: 1.5rem; }
-            .time { width: 100%; }
-            .header-actions { width: 100%; justify-content: space-between; }
-            h1 { font-size: 2.2rem; }
+        @media (max-width: 820px) {
+            #mapa-prestigio .platforms { grid-template-columns: 1fr; }
+            #mapa-prestigio { padding: 30px 16px; margin: 15px -1.5rem -1.5rem -1.5rem; }
         }
+
+        /* Mapa Ecosistema */
+        #mapa-prestigio {
+            background: var(--map-bg); color: var(--map-ink); font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 16px; line-height: 1.6;
+            padding: 40px 24px 60px; margin: 20px -1.6rem -1.6rem -1.6rem; border-top: 1px solid #eef2f5; cursor: default; 
+        }
+        #mapa-prestigio .wrap { max-width: 1120px; margin: 0 auto; }
+        #mapa-prestigio .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--map-teal); display: flex; align-items: center; gap: 10px; }
+        #mapa-prestigio .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--map-teal); display: inline-block; }
+        #mapa-prestigio h1.map-title { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: clamp(26px, 4vw, 42px); line-height: 1.06; letter-spacing: -0.02em; margin: 18px 0; max-width: 25ch; color: var(--map-ink); }
+        #mapa-prestigio .lede { max-width: 62ch; color: var(--map-muted); font-size: 16px; }
+        #mapa-prestigio .map-card { margin-top: 40px; background: var(--map-panel); border: 1px solid var(--map-line); border-radius: var(--map-radius); padding: 18px 14px 8px; position: relative; overflow: hidden; }
+        #mapa-prestigio .map-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(var(--map-bg) 1px, transparent 1px) 0 0/100% 44px, linear-gradient(90deg, var(--map-bg) 1px, transparent 1px) 0 0/44px 100%; opacity: .55; }
+        #mapa-prestigio svg { display: block; width: 100%; height: auto; position: relative; z-index: 1; }
+        #mapa-prestigio .map-hint { position: relative; z-index: 1; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--map-muted); padding: 10px 0; margin-bottom: 0; }
+        #mapa-prestigio text { font-family: 'IBM Plex Sans', sans-serif; fill: var(--map-ink); }
+        #mapa-prestigio .t-name { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -.01em; }
+        #mapa-prestigio .t-sub { font-size: 11.5px; fill: var(--map-muted); }
+        #mapa-prestigio .t-mono { font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+        #mapa-prestigio .t-mono-s { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; fill: var(--map-muted); }
+        #mapa-prestigio .t-flow { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; fill: var(--map-muted); }
+        #mapa-prestigio .flow { fill: none; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 3 9; animation: flujo 1.6s linear infinite; transition: stroke-width .25s ease, opacity .25s ease; opacity: .85; }
+        #mapa-prestigio .flow-track { fill: none; stroke: var(--map-line); stroke-width: 2; }
+        #mapa-prestigio .grouping { fill: none; stroke: var(--map-line); stroke-width: 1.5; stroke-dasharray: 2 6; stroke-linecap: round; }
+        @keyframes flujo { to { stroke-dashoffset: -12; } }
+        #mapa-prestigio .flow.potential { stroke-dasharray: 2 10; opacity: .7; animation-duration: 2.2s; }
+        #mapa-prestigio svg.focus .flow.potential.on { opacity: 1; }
+        #mapa-prestigio .node { cursor: default; }
+        #mapa-prestigio .node .box { fill: var(--map-panel); stroke: var(--map-line); stroke-width: 1.5; transition: stroke .25s ease, filter .25s ease; }
+        #mapa-prestigio .node:hover .box { filter: drop-shadow(0 6px 14px rgba(14,43,40,.12)); }
+        #mapa-prestigio .node[data-c="n8n"]:hover .box { stroke: var(--map-n8n); }
+        #mapa-prestigio .node[data-c="claude"]:hover .box { stroke: var(--map-claude); }
+        #mapa-prestigio .node[data-c="studio"]:hover .box { stroke: var(--map-studio); }
+        #mapa-prestigio .node[data-c="gemini"]:hover .box { stroke: #7B7FE0; }
+        #mapa-prestigio .node[data-c="bq"]:hover .box { stroke: var(--map-bq); }
+        #mapa-prestigio svg.focus .flow { opacity: .14; }
+        #mapa-prestigio svg.focus .flow.on { opacity: 1; stroke-width: 3; stroke-linecap: round; }
+        #mapa-prestigio svg.focus .node { opacity: .35; transition: opacity .25s ease; }
+        #mapa-prestigio svg.focus .node.on { opacity: 1; }
+        #mapa-prestigio .dset { fill: #F0F5FB; stroke: #D3E1F7; stroke-width: 1; }
+        #mapa-prestigio .keyline { stroke: var(--map-bq); stroke-width: 1.2; stroke-dasharray: 2 4; fill: none; opacity: .7; }
+        #mapa-prestigio .platforms { margin-top: 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        #mapa-prestigio .pcard { background: var(--map-panel); border: 1px solid var(--map-line); border-radius: var(--map-radius); padding: 28px 28px 26px; position: relative; }
+        #mapa-prestigio .pcard::before { content: ""; position: absolute; left: 28px; top: 0; width: 56px; height: 4px; border-radius: 0 0 4px 4px; background: var(--c, var(--map-teal)); }
+        #mapa-prestigio .pcard.gemini::before { background: linear-gradient(90deg, #4285F4, #9B72CB); }
+        #mapa-prestigio .pcard:last-child { grid-column: 1 / -1; }
+        #mapa-prestigio .pcard .step { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--c, var(--map-teal)); }
+        #mapa-prestigio .pcard h2 { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.015em; margin: 8px 0 10px; color: var(--map-ink); }
+        #mapa-prestigio .pcard p { color: var(--map-muted); font-size: 15px; max-width: 52ch; }
+        #mapa-prestigio .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        #mapa-prestigio .chip { font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 5px 10px; border-radius: 8px; background: color-mix(in srgb, var(--c, var(--map-teal)) 8%, white); border: 1px solid color-mix(in srgb, var(--c, var(--map-teal)) 26%, white); color: var(--map-ink); }
+        #mapa-prestigio .stats { display: flex; gap: 28px; margin-top: 18px; flex-wrap: wrap; }
+        #mapa-prestigio .stat b { display: block; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; color: var(--map-ink); line-height: 1.1; }
+        #mapa-prestigio .stat span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--map-muted); letter-spacing: .05em; text-transform: uppercase; }
+        #mapa-prestigio .closing { margin-top: 24px; background: var(--map-ink); color: #EAF2F0; border-radius: var(--map-radius); padding: 36px 32px; display: flex; gap: 24px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+        #mapa-prestigio .closing h3 { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -.015em; max-width: 30ch; line-height: 1.25; color:#fff;}
+        #mapa-prestigio .closing p { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #9FB8B3; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 5px;}
+        #mapa-prestigio .badges { display: flex; gap: 10px; flex-wrap: wrap; }
+        #mapa-prestigio .badge { font-family: 'IBM Plex Mono', monospace; font-size: 12px; border: 1px solid #2C4D48; border-radius: 999px; padding: 7px 14px; color: #CFE2DE; }
     </style>
 </head>
 <body>
@@ -169,35 +249,40 @@
         <div class="logo-container">
             <img src="PRESTIGIO LOGO NUEVO.png" alt="Logo Prestigio">
         </div>
-        <h1>Sesión de Trabajo <strong>Estratégico</strong></h1>
+        <h1>Sesión de Trabajo <strong>Estratégico, Infraestructura y Escalabilidad</strong></h1>
         <div class="tagline">Medellín • Julio 10 • Visión 2030</div>
     </header>
 
     <div class="container">
         
         <h3 class="objectives-title">El propósito de nuestro encuentro</h3>
+        <p class="objectives-subtitle">El "qué" queremos lograr hoy, que dictará el "hacer" de nuestra agenda.</p>
+
         <div class="objectives-grid">
             <div class="obj-card">
                 <h4>1. Compartir nuestra esencia</h4>
                 <p>Conversaremos a fondo para definir las metodologías clave que nos hacen únicos. Queremos estructurar este conocimiento para poder acompañar de forma masiva a miles de líderes conservando nuestra cercanía.</p>
+                <div class="obj-execution"><span>➔</span> Se aterriza en el Bloque 2</div>
             </div>
             <div class="obj-card">
                 <h4>2. Coordinar el ecosistema</h4>
                 <p>Buscaremos tener total claridad sobre el alcance de nuestras herramientas internas (bases de datos y flujos propios) y entender con precisión en qué momentos nos damos la mano con aliados y plataformas externas.</p>
+                <div class="obj-execution"><span>➔</span> Se aterriza en los Bloques 1 y 3</div>
             </div>
             <div class="obj-card">
-                <h4>3. Sincronizar el camino</h4>
-                <p>Estructuraremos una hoja de ruta compartida para los próximos meses, priorizando los proyectos de mayor valor para el equipo y definiendo los siguientes pasos de forma coordinada.</p>
+                <h4>3. Sincronizar la ejecución</h4>
+                <p>Las ideas sin plan no escalan. Este objetivo busca que salgamos con una hoja de ruta a partir de lo construido hasta este momento, coordinada para el segundo semestre y con un mensaje comercial unificado para nuestros clientes.</p>
+                <div class="obj-execution"><span>➔</span> Se aterriza en los Bloques 3 y 4</div>
             </div>
         </div>
 
         <div class="timeline-section">
-            <h2 class="section-title">Nuestra Agenda del Día</h2>
+            <h2 class="section-title">El Hacer: Nuestra Agenda</h2>
 
             <div class="agenda-item" onclick="toggleAgenda(this)">
                 <div class="agenda-header">
-                    <div class="time">08:00 - 10:00</div>
-                    <div class="topic">Nuestra realidad actual y retos de crecimiento</div>
+                    <div class="time">08:00 - 10:30</div>
+                    <div class="topic">Gobierno e infraestructura que garantice escalabilidad y valor para el cliente</div>
                     <div class="header-actions">
                         <button class="check-btn" onclick="event.stopPropagation(); checkItem(this)">◽ Pendiente</button>
                         <div class="arrow">▼</div>
@@ -207,6 +292,43 @@
                     <div class="detail-card">
                         <h5>Alineación de herramientas internas</h5>
                         <p>Haremos una revisión de las plataformas y automatizaciones lógicas sobre las cuales opera la empresa hoy. El fin es que el equipo tenga total entendimiento de las bases actuales antes de planear el futuro.</p>
+                        
+                        <div onclick="event.stopPropagation();">
+                            <section id="mapa-prestigio">
+                              <div class="wrap">
+                                <p class="eyebrow">Infraestructura · Ecosistema de datos Prestigio</p>
+                                <h1 class="map-title">Un ecosistema, cuatro plataformas, una sola fuente de verdad.</h1>
+                                <div class="map-card">
+                                  <svg id="eco-map" viewBox="0 0 1100 660" role="img" aria-label="Mapa del ecosistema">
+                                    <path class="flow-track" d="M 540 505 L 540 560"/><path class="flow-track" d="M 560 505 L 560 560"/><path class="flow-track" d="M 505 290 C 495 240, 510 200, 535 158"/><path class="flow-track" d="M 690 290 C 740 245, 820 205, 872 158"/>
+                                    <defs>
+                                      <marker id="arrClaude" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" fill="var(--map-claude)"/></marker>
+                                      <marker id="arrGemini" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" fill="#7B7FE0"/></marker>
+                                      <marker id="arrStudio" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" fill="var(--map-studio)"/></marker>
+                                    </defs>
+                                    <g id="flows">
+                                      <path class="flow" data-f="studio" stroke="var(--map-studio)" marker-end="url(#arrStudio)" d="M 540 505 L 540 550"/>
+                                      <path class="flow" data-f="studio" stroke="var(--map-studio)" marker-end="url(#arrStudio)" d="M 560 560 L 560 515"/>
+                                      <path class="flow potential" data-f="claude" stroke="var(--map-claude)" marker-end="url(#arrClaude)" d="M 505 290 C 495 240, 510 200, 535 158"/>
+                                      <path class="flow potential" data-f="gemini" stroke="#7B7FE0" marker-end="url(#arrGemini)" d="M 690 290 C 740 245, 820 205, 872 158"/>
+                                    </g>
+                                    <text class="t-flow" x="580" y="536">conexión activa</text><text class="t-flow" x="580" y="551">lectura y escritura</text><text class="t-flow" x="488" y="216" text-anchor="end">posible conexión</text><text class="t-flow" x="812" y="216" text-anchor="start">posible conexión</text>
+                                    <path class="grouping" d="M 364 106 L 396 106"/><path class="grouping" d="M 704 106 L 736 106"/><text class="t-flow" x="550" y="42" text-anchor="middle">plataformas complementarias</text>
+                                    <g class="node" data-c="n8n" data-f="n8n" tabindex="0"><rect class="box" x="60" y="60" width="300" height="92" rx="16"/><circle cx="98" cy="106" r="16" fill="var(--map-n8n)" opacity=".14"/><circle cx="98" cy="106" r="6" fill="var(--map-n8n)"/><text class="t-name" x="128" y="102" style="font-size:14.5px">n8n y / o ecosistema Google</text><text class="t-sub" x="128" y="122">Automatización · 41 flujos activos</text></g>
+                                    <g class="node" data-c="claude" data-f="claude" tabindex="0"><rect class="box" x="400" y="60" width="300" height="92" rx="16"/><circle cx="438" cy="106" r="16" fill="var(--map-claude)" opacity=".14"/><circle cx="438" cy="106" r="6" fill="var(--map-claude)"/><text class="t-name" x="468" y="100">Claude</text><text class="t-sub" x="468" y="122">Proyectos, análisis y diseño</text></g>
+                                    <g class="node" data-c="gemini" data-f="gemini" tabindex="0"><rect class="box" x="740" y="60" width="300" height="92" rx="16"/><circle cx="778" cy="106" r="16" fill="url(#gemGrad)" opacity=".16"/><circle cx="778" cy="106" r="6" fill="url(#gemGrad)"/><text class="t-name" x="808" y="100">Gemini</text><text class="t-sub" x="808" y="122">Motor de IA de Prestigio</text></g>
+                                    <g class="node" data-c="bq" data-f="all" tabindex="0"><rect class="box" x="330" y="290" width="440" height="215" rx="20"/><circle cx="372" cy="334" r="17" fill="var(--map-bq)" opacity=".14"/><circle cx="372" cy="334" r="6.5" fill="var(--map-bq)"/><text class="t-name" x="402" y="330">BigQuery</text><text class="t-sub" x="402" y="350">Google Cloud · fuente única de verdad</text>
+                                      <g><rect class="dset" x="356" y="372" width="388" height="30" rx="8"/><text class="t-mono" x="370" y="392">diagnosticos_prestigio</text></g>
+                                      <g><rect class="dset" x="356" y="410" width="388" height="30" rx="8"/><text class="t-mono" x="370" y="430">ecosistema_prestigio</text></g>
+                                      <g><rect class="dset" x="356" y="448" width="388" height="30" rx="8"/><text class="t-mono" x="370" y="468">introspeccion_factor_ct</text></g>
+                                      <path class="keyline" d="M 344 387 C 326 400, 326 415, 344 425"/><path class="keyline" d="M 344 425 C 326 438, 326 453, 344 463"/>
+                                    </g>
+                                    <g class="node" data-c="studio" data-f="studio" tabindex="0"><rect class="box" x="400" y="560" width="300" height="92" rx="16"/><circle cx="438" cy="606" r="16" fill="var(--map-studio)" opacity=".14"/><circle cx="438" cy="606" r="6" fill="var(--map-studio)"/><text class="t-name" x="468" y="600">Google AI Studio</text><text class="t-sub" x="468" y="622">Apps propias sobre GCP</text></g>
+                                  </svg>
+                                </div>
+                              </div>
+                            </section>
+                        </div>
                     </div>
                     <div class="detail-card">
                         <h5>Identificación de oportunidades</h5>
@@ -219,8 +341,8 @@
             <div class="agenda-item" onclick="toggleAgenda(this)">
                 <div class="special-guest-tag">Invitado Especial</div>
                 <div class="agenda-header">
-                    <div class="time">10:00 - 11:30</div>
-                    <div class="topic">Nuestra esencia y un espacio de inspiración</div>
+                    <div class="time">10:30 - 11:30</div>
+                    <div class="topic">Espacio de inspiración: Caso de Uso CrearIA</div>
                     <div class="header-actions">
                         <button class="check-btn" onclick="event.stopPropagation(); checkItem(this)">◽ Pendiente</button>
                         <div class="arrow">▼</div>
@@ -228,31 +350,23 @@
                 </div>
                 <div class="agenda-body">
                     <div class="detail-card">
-                        <h5>La base de nuestro conocimiento</h5>
-                        <p>Abriremos una conversación sobre cómo estructurar el saber de Prestigio para que sirva de base a futuros desarrollos, asegurando que la tecnología sea un vehículo para el ser.</p>
-                    </div>
-                    <div class="detail-card">
                         <h5>Caso de Uso CrearIA</h5>
-                        <p>Tendremos una sesión para conocer una implementación tecnológica de vanguardia de la mano de Óscar. El objetivo es usar esta experiencia práctica para inspirar nuestra arquitectura de producto.</p>
+                        <p>Tendremos una sesión exclusiva para conocer una implementación tecnológica de vanguardia de la mano de Óscar. El objetivo es profundizar en esta experiencia práctica para inspirar nuestra arquitectura de producto y visualizar el potencial de nuestra gran apuesta tecnológica.</p>
                     </div>
-                    <div class="participant-badge">👤 Equipo Ampliado + Consultoría Externa</div>
+                    <div class="participant-badge">👤 Equipo Ampliado + Óscar (Experto Consultor)</div>
                 </div>
             </div>
 
             <div class="agenda-item" onclick="toggleAgenda(this)">
                 <div class="agenda-header">
                     <div class="time">11:30 - 13:30</div>
-                    <div class="topic">Acuerdos y plan de acción para el semestre</div>
+                    <div class="topic">Construcción de la hoja de ruta viva</div>
                     <div class="header-actions">
                         <button class="check-btn" onclick="event.stopPropagation(); checkItem(this)">◽ Pendiente</button>
                         <div class="arrow">▼</div>
                     </div>
                 </div>
                 <div class="agenda-body">
-                    <div class="detail-card">
-                        <h5>Alcance de nuestra tecnología y aliados</h5>
-                        <p>Definiremos con precisión las fronteras: qué desarrollos se lideran desde casa y cómo nos conectamos de forma segura con servicios y plataformas externas.</p>
-                    </div>
                     <div class="detail-card">
                         <h5>Construcción de la hoja de ruta viva</h5>
                         <p>Estableceremos las prioridades estratégicas para los próximos meses, definiendo los focos de acción de cada equipo para avanzar al mismo ritmo.</p>
@@ -273,7 +387,6 @@
                 <div class="agenda-body">
                     <div class="detail-card">
                         <h5>Almuerzo y conversación libre</h5>
-                        <p>Un momento para descansar, compartir de forma cercana y decantar tranquilamente las ideas conversadas durante la mañana.</p>
                     </div>
                     <div class="detail-card">
                         <h5>Nuestra propuesta comercial</h5>
@@ -289,10 +402,10 @@
     <footer>
         <img src="PRESTIGIO LOGO NUEVO.png" alt="Logo Prestigio Footer" class="footer-logo">
         <p class="footer-text">Prestigio 2026 • Liderando desde el ser.</p>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;">Todos los derechos reservados. Reserva de todos los derechos de autor de Prestigio.</p>
     </footer>
 
     <script>
-        // Control de apertura de acordeón
         function toggleAgenda(element) {
             const items = document.querySelectorAll('.agenda-item');
             if(element.classList.contains('active')) {
@@ -303,18 +416,43 @@
             element.classList.add('active');
         }
 
-        // Sistema dinámico de "Chulear" / Checkbox ejecutivo
         function checkItem(button) {
             const card = button.closest('.agenda-item');
             card.classList.toggle('completed');
-            
             if(card.classList.contains('completed')) {
                 button.innerHTML = "✅ Completado";
-                card.classList.remove('active'); // Cierra automáticamente al completar para una UX limpia
+                card.classList.remove('active'); 
             } else {
                 button.innerHTML = "◽ Pendiente";
             }
         }
+
+        (function(){
+          var svg = document.getElementById('eco-map');
+          if(!svg) return;
+          var nodes = svg.querySelectorAll('.node');
+          var flows = svg.querySelectorAll('.flow');
+          function focus(key){
+            svg.classList.add('focus');
+            flows.forEach(function(f){ f.classList.toggle('on', key === 'all' || f.dataset.f === key); });
+            nodes.forEach(function(n){ n.classList.toggle('on', key === 'all' || n.dataset.f === key || n.dataset.f === 'all'); });
+          }
+          function blur(){
+            svg.classList.remove('focus');
+            flows.forEach(function(f){ f.classList.remove('on'); });
+            nodes.forEach(function(n){ n.classList.remove('on'); });
+          }
+          nodes.forEach(function(n){
+            var key = n.dataset.f;
+            var hasFlow = key === 'all' || svg.querySelector('.flow[data-f="' + key + '"]');
+            if(!hasFlow) return;
+            n.addEventListener('mousemove5', function(){ focus(key); });
+            n.addEventListener('mouseenter', function(){ focus(key); });
+            n.addEventListener('mouseleave', blur);
+            n.addEventListener('focus', function(){ focus(key); });
+            n.addEventListener('blur', blur);
+          });
+        })();
     </script>
 </body>
 </html>
