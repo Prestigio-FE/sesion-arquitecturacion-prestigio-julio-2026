@@ -31,6 +31,7 @@
             --map-n8n: #EA4B71;
             --map-claude: #C15F3C;
             --map-studio: #7C5CE0;
+            --map-ag: #F5A623; /* Color para Antigravity */
             --map-radius: 18px;
         }
 
@@ -212,6 +213,7 @@
         #mapa-prestigio .node[data-c="n8n"]:hover .box { stroke: var(--map-n8n); }
         #mapa-prestigio .node[data-c="claude"]:hover .box { stroke: var(--map-claude); }
         #mapa-prestigio .node[data-c="studio"]:hover .box { stroke: var(--map-studio); }
+        #mapa-prestigio .node[data-c="ag"]:hover .box { stroke: var(--map-ag); }
         #mapa-prestigio .node[data-c="gemini"]:hover .box { stroke: #7B7FE0; }
         #mapa-prestigio .node[data-c="bq"]:hover .box { stroke: var(--map-bq); }
         #mapa-prestigio svg.focus .flow { opacity: .14; }
@@ -220,24 +222,6 @@
         #mapa-prestigio svg.focus .node.on { opacity: 1; }
         #mapa-prestigio .dset { fill: #F0F5FB; stroke: #D3E1F7; stroke-width: 1; }
         #mapa-prestigio .keyline { stroke: var(--map-bq); stroke-width: 1.2; stroke-dasharray: 2 4; fill: none; opacity: .7; }
-        #mapa-prestigio .platforms { margin-top: 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        #mapa-prestigio .pcard { background: var(--map-panel); border: 1px solid var(--map-line); border-radius: var(--map-radius); padding: 28px 28px 26px; position: relative; }
-        #mapa-prestigio .pcard::before { content: ""; position: absolute; left: 28px; top: 0; width: 56px; height: 4px; border-radius: 0 0 4px 4px; background: var(--c, var(--map-teal)); }
-        #mapa-prestigio .pcard.gemini::before { background: linear-gradient(90deg, #4285F4, #9B72CB); }
-        #mapa-prestigio .pcard:last-child { grid-column: 1 / -1; }
-        #mapa-prestigio .pcard .step { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--c, var(--map-teal)); }
-        #mapa-prestigio .pcard h2 { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.015em; margin: 8px 0 10px; color: var(--map-ink); }
-        #mapa-prestigio .pcard p { color: var(--map-muted); font-size: 15px; max-width: 52ch; }
-        #mapa-prestigio .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-        #mapa-prestigio .chip { font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 5px 10px; border-radius: 8px; background: color-mix(in srgb, var(--c, var(--map-teal)) 8%, white); border: 1px solid color-mix(in srgb, var(--c, var(--map-teal)) 26%, white); color: var(--map-ink); }
-        #mapa-prestigio .stats { display: flex; gap: 28px; margin-top: 18px; flex-wrap: wrap; }
-        #mapa-prestigio .stat b { display: block; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; color: var(--map-ink); line-height: 1.1; }
-        #mapa-prestigio .stat span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--map-muted); letter-spacing: .05em; text-transform: uppercase; }
-        #mapa-prestigio .closing { margin-top: 24px; background: var(--map-ink); color: #EAF2F0; border-radius: var(--map-radius); padding: 36px 32px; display: flex; gap: 24px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-        #mapa-prestigio .closing h3 { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -.015em; max-width: 30ch; line-height: 1.25; color:#fff;}
-        #mapa-prestigio .closing p { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #9FB8B3; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 5px;}
-        #mapa-prestigio .badges { display: flex; gap: 10px; flex-wrap: wrap; }
-        #mapa-prestigio .badge { font-family: 'IBM Plex Mono', monospace; font-size: 12px; border: 1px solid #2C4D48; border-radius: 999px; padding: 7px 14px; color: #CFE2DE; }
     </style>
 </head>
 <body>
@@ -297,33 +281,91 @@
                             <section id="mapa-prestigio">
                               <div class="wrap">
                                 <p class="eyebrow">Infraestructura · Ecosistema de datos Prestigio</p>
-                                <h1 class="map-title">Un ecosistema, cuatro plataformas, una sola fuente de verdad.</h1>
+                                <h1 class="map-title">Un ecosistema, cinco plataformas, una sola fuente de verdad.</h1>
                                 <div class="map-card">
-                                  <svg id="eco-map" viewBox="0 0 1100 660" role="img" aria-label="Mapa del ecosistema">
-                                    <path class="flow-track" d="M 540 505 L 540 560"/><path class="flow-track" d="M 560 505 L 560 560"/><path class="flow-track" d="M 505 290 C 495 240, 510 200, 535 158"/><path class="flow-track" d="M 690 290 C 740 245, 820 205, 872 158"/>
+                                  <svg id="eco-map" viewBox="0 0 1100 750" role="img" aria-label="Mapa del ecosistema">
+                                    
+                                    <!-- Flow Tracks (líneas base de los flujos bidireccionales centradas) -->
+                                    <path class="flow-track" d="M 355 505 L 355 560"/>
+                                    <path class="flow-track" d="M 375 505 L 375 560"/>
+                                    <path class="flow-track" d="M 725 505 L 725 560"/>
+                                    <path class="flow-track" d="M 745 505 L 745 560"/>
+                                    
+                                    <path class="flow-track" d="M 505 290 C 495 240, 510 200, 535 158"/>
+                                    <path class="flow-track" d="M 690 290 C 740 245, 820 205, 872 158"/>
+                                    
                                     <defs>
                                       <marker id="arrClaude" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" fill="var(--map-claude)"/></marker>
                                       <marker id="arrGemini" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" fill="#7B7FE0"/></marker>
                                       <marker id="arrStudio" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" fill="var(--map-studio)"/></marker>
+                                      <marker id="arrAg" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 z" fill="var(--map-ag)"/></marker>
                                     </defs>
+                                    
                                     <g id="flows">
-                                      <path class="flow" data-f="studio" stroke="var(--map-studio)" marker-end="url(#arrStudio)" d="M 540 505 L 540 550"/>
-                                      <path class="flow" data-f="studio" stroke="var(--map-studio)" marker-end="url(#arrStudio)" d="M 560 560 L 560 515"/>
+                                      <!-- Studio Flows -->
+                                      <path class="flow" data-f="studio" stroke="var(--map-studio)" marker-end="url(#arrStudio)" d="M 355 505 L 355 550"/>
+                                      <path class="flow" data-f="studio" stroke="var(--map-studio)" marker-end="url(#arrStudio)" d="M 375 560 L 375 515"/>
+                                      
+                                      <!-- Antigravity Flows -->
+                                      <path class="flow" data-f="ag" stroke="var(--map-ag)" marker-end="url(#arrAg)" d="M 725 505 L 725 550"/>
+                                      <path class="flow" data-f="ag" stroke="var(--map-ag)" marker-end="url(#arrAg)" d="M 745 560 L 745 515"/>
+                                      
+                                      <!-- Potential Flows -->
                                       <path class="flow potential" data-f="claude" stroke="var(--map-claude)" marker-end="url(#arrClaude)" d="M 505 290 C 495 240, 510 200, 535 158"/>
                                       <path class="flow potential" data-f="gemini" stroke="#7B7FE0" marker-end="url(#arrGemini)" d="M 690 290 C 740 245, 820 205, 872 158"/>
                                     </g>
-                                    <text class="t-flow" x="580" y="536">conexión activa</text><text class="t-flow" x="580" y="551">lectura y escritura</text><text class="t-flow" x="488" y="216" text-anchor="end">posible conexión</text><text class="t-flow" x="812" y="216" text-anchor="start">posible conexión</text>
-                                    <path class="grouping" d="M 364 106 L 396 106"/><path class="grouping" d="M 704 106 L 736 106"/><text class="t-flow" x="550" y="42" text-anchor="middle">plataformas complementarias</text>
+                                    
+                                    <text class="t-flow" x="550" y="536" text-anchor="middle">conexión activa</text>
+                                    <text class="t-flow" x="550" y="551" text-anchor="middle">lectura y escritura</text>
+                                    
+                                    <text class="t-flow" x="488" y="216" text-anchor="end">posible conexión</text>
+                                    <text class="t-flow" x="812" y="216" text-anchor="start">posible conexión</text>
+                                    
+                                    <path class="grouping" d="M 364 106 L 396 106"/><path class="grouping" d="M 704 106 L 736 106"/>
+                                    <text class="t-flow" x="550" y="42" text-anchor="middle">plataformas complementarias</text>
+                                    
                                     <g class="node" data-c="n8n" data-f="n8n" tabindex="0"><rect class="box" x="60" y="60" width="300" height="92" rx="16"/><circle cx="98" cy="106" r="16" fill="var(--map-n8n)" opacity=".14"/><circle cx="98" cy="106" r="6" fill="var(--map-n8n)"/><text class="t-name" x="128" y="102" style="font-size:14.5px">n8n y / o ecosistema Google</text><text class="t-sub" x="128" y="122">Automatización · 41 flujos activos</text></g>
                                     <g class="node" data-c="claude" data-f="claude" tabindex="0"><rect class="box" x="400" y="60" width="300" height="92" rx="16"/><circle cx="438" cy="106" r="16" fill="var(--map-claude)" opacity=".14"/><circle cx="438" cy="106" r="6" fill="var(--map-claude)"/><text class="t-name" x="468" y="100">Claude</text><text class="t-sub" x="468" y="122">Proyectos, análisis y diseño</text></g>
                                     <g class="node" data-c="gemini" data-f="gemini" tabindex="0"><rect class="box" x="740" y="60" width="300" height="92" rx="16"/><circle cx="778" cy="106" r="16" fill="url(#gemGrad)" opacity=".16"/><circle cx="778" cy="106" r="6" fill="url(#gemGrad)"/><text class="t-name" x="808" y="100">Gemini</text><text class="t-sub" x="808" y="122">Motor de IA de Prestigio</text></g>
-                                    <g class="node" data-c="bq" data-f="all" tabindex="0"><rect class="box" x="330" y="290" width="440" height="215" rx="20"/><circle cx="372" cy="334" r="17" fill="var(--map-bq)" opacity=".14"/><circle cx="372" cy="334" r="6.5" fill="var(--map-bq)"/><text class="t-name" x="402" y="330">BigQuery</text><text class="t-sub" x="402" y="350">Google Cloud · fuente única de verdad</text>
-                                      <g><rect class="dset" x="356" y="372" width="388" height="30" rx="8"/><text class="t-mono" x="370" y="392">diagnosticos_prestigio</text></g>
-                                      <g><rect class="dset" x="356" y="410" width="388" height="30" rx="8"/><text class="t-mono" x="370" y="430">ecosistema_prestigio</text></g>
-                                      <g><rect class="dset" x="356" y="448" width="388" height="30" rx="8"/><text class="t-mono" x="370" y="468">introspeccion_factor_ct</text></g>
-                                      <path class="keyline" d="M 344 387 C 326 400, 326 415, 344 425"/><path class="keyline" d="M 344 425 C 326 438, 326 453, 344 463"/>
+                                    
+                                    <!-- BigQuery centrado -->
+                                    <g class="node" data-c="bq" data-f="all" tabindex="0">
+                                      <rect class="box" x="310" y="290" width="480" height="215" rx="20"/>
+                                      <circle cx="352" cy="334" r="17" fill="var(--map-bq)" opacity=".14"/>
+                                      <circle cx="352" cy="334" r="6.5" fill="var(--map-bq)"/>
+                                      <text class="t-name" x="382" y="330">BigQuery</text>
+                                      <text class="t-sub" x="382" y="350">Google Cloud · fuente única de verdad</text>
+                                      <g><rect class="dset" x="336" y="372" width="428" height="30" rx="8"/><text class="t-mono" x="350" y="392">diagnosticos_prestigio</text></g>
+                                      <g><rect class="dset" x="336" y="410" width="428" height="30" rx="8"/><text class="t-mono" x="350" y="430">ecosistema_prestigio</text></g>
+                                      <g><rect class="dset" x="336" y="448" width="428" height="30" rx="8"/><text class="t-mono" x="350" y="468">introspeccion_factor_ct</text></g>
+                                      <path class="keyline" d="M 324 387 C 306 400, 306 415, 324 425"/>
+                                      <path class="keyline" d="M 324 425 C 306 438, 306 453, 324 463"/>
                                     </g>
-                                    <g class="node" data-c="studio" data-f="studio" tabindex="0"><rect class="box" x="400" y="560" width="300" height="92" rx="16"/><circle cx="438" cy="606" r="16" fill="var(--map-studio)" opacity=".14"/><circle cx="438" cy="606" r="6" fill="var(--map-studio)"/><text class="t-name" x="468" y="600">Google AI Studio</text><text class="t-sub" x="468" y="622">Apps propias sobre GCP</text></g>
+                                    
+                                    <!-- Caja AI Studio centrada a la izquierda -->
+                                    <g class="node" data-c="studio" data-f="studio" tabindex="0">
+                                      <rect class="box" x="190" y="560" width="350" height="170" rx="16"/>
+                                      <circle cx="228" cy="606" r="16" fill="var(--map-studio)" opacity=".14"/>
+                                      <circle cx="228" cy="606" r="6" fill="var(--map-studio)"/>
+                                      <text class="t-name" x="258" y="600">Google AI Studio</text>
+                                      <text class="t-sub" x="258" y="622">Apps propias sobre GCP:</text>
+                                      <text class="t-mono-s" x="258" y="642">• Diagnostic Culture Map By Prestigio</text>
+                                      <text class="t-mono-s" x="258" y="658">• Factor CT</text>
+                                      <text class="t-mono-s" x="258" y="674">• Torre de Control</text>
+                                      <text class="t-mono-s" x="258" y="690">• Agentes Prestigio (por desarrollar)</text>
+                                      <text class="t-mono-s" x="258" y="706">• Plataforma HumanAI First Company</text>
+                                    </g>
+                                    
+                                    <!-- Caja Antigravity centrada a la derecha -->
+                                    <g class="node" data-c="ag" data-f="ag" tabindex="0">
+                                      <rect class="box" x="560" y="560" width="350" height="170" rx="16"/>
+                                      <circle cx="598" cy="606" r="16" fill="var(--map-ag)" opacity=".14"/>
+                                      <circle cx="598" cy="606" r="6" fill="var(--map-ag)"/>
+                                      <text class="t-name" x="628" y="600">Antigravity</text>
+                                      <text class="t-sub" x="628" y="622">Editor de código asistido por IA</text>
+                                      <text class="t-mono-s" x="628" y="642">• Desarrollo técnico avanzado</text>
+                                    </g>
+
                                   </svg>
                                 </div>
                               </div>
